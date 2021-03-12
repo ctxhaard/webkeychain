@@ -1,0 +1,36 @@
+{
+    "accounts": [
+        {
+            "id": 1,
+            "name": "Google account",
+            "url": "http://www.google.com",
+            "username": "mario.rossi@gmail.com",
+            "password": "my-password-123",
+            "notes": "This is a fake account to test the JSON APIs"
+        },
+        {
+            "id": 2,
+            "name": "Outlook account",
+            "url": "http://www.outlook.com",
+            "username": "andrea.bianchi@outlook.com",
+            "password": "my-password-321",
+            "notes": "This another fake account to test the JSON APIs"
+        },
+        {
+            "id": 2,
+            "name": "Facebook account",
+            "url": "http://www.facebook.com",
+            "username": "andrea.bianchi@outlook.com",
+            "password": "my-password-321",
+            "notes": "This another fake account to test the JSON APIs"
+        },
+        {
+            "id": 2,
+            "name": "Twitter account",
+            "url": "http://www.twitter.com",
+            "username": "andrea.bianchi@outlook.com",
+            "password": "my-password-321",
+            "notes": "This another fake account to test the JSON APIs"
+        }
+    ]
+}

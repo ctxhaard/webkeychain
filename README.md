@@ -22,7 +22,7 @@ npm run lint
 
 ### Provide a JSON document to test APIs
 ```
-npx json-server --watch data/accounts.json
+npx json-server --watch data/db.json
 ```
 
 ### Customize configuration

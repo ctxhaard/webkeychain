@@ -20,5 +20,10 @@ npm run build
 npm run lint
 ```
 
+### Provide a JSON document to test APIs
+```
+npx json-server --watch data/accounts.json
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

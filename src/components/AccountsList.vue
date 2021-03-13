@@ -15,10 +15,14 @@ export default {
         }
     }, 
     async created () {
-        const res = await fetch('http://localhost:3000/accounts', {
-            method: 'GET'})
-        const accounts = await res.json()
-        this.accounts = accounts
+        try {
+            const res = await fetch('http://localhost:3000/accounts', {
+                method: 'GET'})
+            const accounts = await res.json()
+            this.accounts = accounts            
+        } catch (error) {
+            console.log(`error: {error} while fetching accounts`)
+        }
     }
 }
 </script>

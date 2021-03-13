@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import AccountShow from './components/AccountShow.vue'
-import AccountsList from './components/AccountsList'
+import AccountShow from '/src/components/AccountShow.vue'
+import AccountsList from '/src/components/AccountsList.vue'
 
 export default {
   name: 'App',

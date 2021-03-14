@@ -25,5 +25,11 @@ npm run lint
 npx json-server --watch data/db.json
 ```
 
+### Use with exkeychain
+```
+mix deps.get
+mix phx.server
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

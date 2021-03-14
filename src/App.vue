@@ -1,27 +1,24 @@
 <template>
- <div class="container">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="navbar navbar-collapse">
-      <ul class="navbar-nav mr-auti">
-        <li class="nav-item mr-3">Accounts list</li>
-        <li class="nav-item mr-3">Edit account</li>
-      </ul>
-    </div>
-  </nav>
- </div>
-  <AccountShow></AccountShow>
-  <AccountsList></AccountsList>
+  <div id="mount-point">
+    <Authentication @authenticated="onAuthenticated" ></Authentication>
+  </div>
 </template>
 
 <script>
-import AccountShow from '/src/components/AccountShow.vue'
-import AccountsList from '/src/components/AccountsList.vue'
+import Authentication from '/src/components/Authentication.vue'
+import AccountList from '/src/components/AccountsList.vue'
+import { createApp } from 'vue'
 
 export default {
   name: 'App',
   components: {
-    AccountShow,
-    AccountsList
+    Authentication,
+  },
+  methods: {
+    onAuthenticated () {
+      console.log("authenticated event captured!")
+      createApp(AccountList).mount('#mount-point')
+    }
   }
 }
 </script>

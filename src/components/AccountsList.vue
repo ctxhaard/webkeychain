@@ -9,23 +9,21 @@
 </template>
 
 <script>
-import AccountShow from '/src/components/AccountShow.vue'
 import { createApp } from 'vue'
 
 export default {
+    name: 'AccountsList',
     data() {
         return {
             accounts: []
         }
     },
+    props: {
+        display: String
+    },
     methods: {
         onSelected(id) {
             console.log(`account: ${id} was selected`)
-            // TODO: 
-            // disable list items selection
-            // blur the list
-            // show the accounts detail
-            createApp(AccountShow).mount('#mount-point-2')
         }
     },
     emits: ['selected'],

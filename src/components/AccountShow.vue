@@ -21,6 +21,7 @@
 <script>
 import AccountField from './AccountField.vue'
 export default {
+    name: 'AccountShow',
     components: {
         AccountField
     },

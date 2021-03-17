@@ -22,7 +22,10 @@ export default {
             password: '',
             filename: "accounts.protected"
         }
-    }, 
+    },
+    props: {
+        display: String
+    },
     methods: {
         submit: async function(event) {
             try {
@@ -36,11 +39,10 @@ export default {
 
             }
             finally {
-                this.$emit('authenticated')
+                window.location.pathname = '/list'
             }
         }
-    },
-    emits: ['authenticated']
+    }
 }
 </script>
 

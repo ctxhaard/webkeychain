@@ -29,7 +29,7 @@ export default {
     emits: ['selected'],
     async created () {
         try {
-            const res = await fetch('http://localhost:3000/api/accounts', {
+            const res = await fetch('/accounts', {
                 method: 'GET'})
             const accounts = await res.json()
             this.accounts = accounts.data         

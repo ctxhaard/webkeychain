@@ -4,13 +4,13 @@
       <form action="">
           <fieldset class="my-3">
             <label for="password">Password</label>
-            <input type="password" class="form-control" placeholder="Password" autocomplete="current-password" :value="password">
+            <input type="password" class="form-control" placeholder="Password" autocomplete="current-password" v-model="password">
             <small class="form-text text-muted">the password to unlock the accounts database</small>
             <label for="filename">File name</label>
-            <input type="text" class="form-control" placeholder="Accounts file name" :value="filename">
+            <input type="text" class="form-control" placeholder="Accounts file name" v-model="filename">
             <small class="form-text text-muted">the accounts file name</small>
           </fieldset>
-          <button type="button" class="btn btn-outline-primary mx-1" v-on:click="submit">Submit</button>
+          <button type="button" class="btn btn-outline-primary mx-1" v-on:click.prevent="submit">Submit</button>
       </form>
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {
     data() {
         return {
             password: '',
-            filename: "accounts.protected"
+            filename: "archive.protected"
         }
     },
     props: {
@@ -30,17 +30,19 @@ export default {
     methods: {
         submit: async function(event) {
             try {
-                let res = await fetch('http://localhost/login', {
-                method: 'POST',
-                body:  {password: this.password}
-            })
-            let cnt = await res.json()
-            // todo parse response
-            } catch(e) {
-
-            }
-            finally {
+                let res = await fetch('/accounts/load', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify( { file: this.filename, pwd: this.password })
+                })
+                let cnt = await res.json()
+                console.log( `response code was: ${ cnt }` )
                 window.location.pathname = '/list'
+            } catch(e) {
+                console.log(`error: ${e}`)
             }
         }
     }

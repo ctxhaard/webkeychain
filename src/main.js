@@ -6,8 +6,8 @@ import '@forevolve/bootstrap-dark/dist/css/bootstrap-dark.min.css'
 
 import { createApp, h } from 'vue'
 
-import App from '/src/App.vue'
-import Authentication from '/src/components/Authentication.vue'
+import App from './components/App.vue'
+import Authentication from './components/Authentication.vue'
 
 const routes = {
     '/': Authentication,

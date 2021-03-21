@@ -1,7 +1,14 @@
 <template>
   <div class="mb-3">
     <label :for="name" class="form-label">{{ label }}</label>
-    <input :type="inputType" class="form-control" :id="name" :aria-describedby="name + 'Help'" :value="value" :placeholder="help">
+    <input 
+      class="form-control" 
+      :type="inputType"
+      :id="name" 
+      :aria-describedby="name + 'Help'"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)" 
+      :placeholder="help">
   </div>
 </template>
 
@@ -13,9 +20,10 @@ export default {
     name: String,
     label: String,
     help: String,
-    value: String,
+    modelValue: String,
     hide: Boolean
   },
+  emits: [ 'update:modelValue' ],
   computed: {
     inputType() {
       return (this.hide ? 'password' : 'text')

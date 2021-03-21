@@ -40,7 +40,7 @@ export default {
                     body: JSON.stringify( { file: this.filename, pwd: this.password })
                 })
                 let cnt = await res.json()
-                console.log( `response code was: ${ cnt }` )
+                console.log( `response was: ${ cnt }` )
                 window.location.pathname = '/list'
             } catch(e) {
                 console.log(`error: ${e}`)

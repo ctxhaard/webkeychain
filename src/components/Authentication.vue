@@ -3,14 +3,15 @@
       <h1>Password prompt</h1>
       <form action="">
           <fieldset class="my-3">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" placeholder="Password" autocomplete="current-password" v-model="password">
-            <small class="form-text text-muted">the password to unlock the accounts database</small>
             <label for="filename">File name</label>
             <input type="text" class="form-control" placeholder="Accounts file name" v-model="filename">
             <small class="form-text text-muted">the accounts file name</small>
+
+            <label for="password">Password</label>
+            <input type="password" class="form-control" placeholder="Password" autocomplete="current-password" v-model="password">
+            <small class="form-text text-muted">the password to unlock the accounts database</small>
           </fieldset>
-          <button type="button" class="btn btn-outline-primary mx-1" v-on:click.prevent="submit">Submit</button>
+          <button type="button" class="btn btn-outline-primary mx-1" @click.prevent="submit">Submit</button>
       </form>
   </div>
 </template>

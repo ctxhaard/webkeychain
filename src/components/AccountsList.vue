@@ -2,10 +2,9 @@
     <div class="container">
         <h1>Accounts</h1>
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action" @click.prevent="onSelected(account.id)" v-for="account in accounts" :key="account.id">{{account.id}}: {{account.title}}</a>
+            <a href="#" class="list-group-item list-group-item-action" @click.prevent="$emit('selected',account.id)" v-for="account in accounts" :key="account.id">{{account.id}}: {{account.title}}</a>
         </div>
     </div>
-    <div id="mount-point-2"></div>
 </template>
 
 <script>
@@ -21,13 +20,8 @@ export default {
     props: {
         display: String
     },
-    methods: {
-        onSelected(id) {
-            console.log(`account: ${id} was selected`)
-        }
-    },
     emits: ['selected'],
-    async created () {
+    async mounted () {
         try {
             const res = await fetch('/accounts', {
                 method: 'GET'})

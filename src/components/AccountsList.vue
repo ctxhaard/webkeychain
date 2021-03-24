@@ -29,7 +29,16 @@ export default {
     },
     methods: {
         createNew() {
-            console.log('TODO: add create new account js code')
+            const res = await fetch('/accounts/new', {
+                method: 'GET',
+                headers: { 'accept': 'application/json' }
+                })
+            let json = await res.json()
+            // TODO: fetch the account and pass it to
+            // the AccountShow, or change the whole logic
+            // : make accountslist fetch single accounts
+            // ad pass to the accountshow, instead of the
+            // id only
         },
         logout() {
             console.log('TODO: add logout js code')

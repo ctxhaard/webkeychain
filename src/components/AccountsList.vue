@@ -4,6 +4,13 @@
         <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action" @click.prevent="$emit('selected',account.id)" v-for="account in accounts" :key="account.id">{{account.id}}: {{account.title}}</a>
         </div>
+            <form action="">
+            <div class="mb-3">
+                <button type="button" class="btn btn-outline-info mx-1" @click.prevent="createNew" >Create new</button>
+                <button type="button" class="btn btn-outline-primary mx-1" @click.prevent="logout">Logout</button>
+            </div>
+            </form>
+
     </div>
 </template>
 
@@ -19,6 +26,14 @@ export default {
     },
     props: {
         display: String
+    },
+    methods: {
+        createNew() {
+            console.log('TODO: add create new account js code')
+        },
+        logout() {
+            console.log('TODO: add logout js code')
+        }
     },
     emits: ['selected'],
     async mounted () {

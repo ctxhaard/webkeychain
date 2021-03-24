@@ -12,9 +12,9 @@
       <div class="mb-3">
         <button type="button" class="btn btn-outline-info mx-1" @click.prevent="hidePassword = !hidePassword" >Show password</button>
         <button type="button" class="btn btn-outline-primary mx-1" @click.prevent="disabled = false">Edit</button>
-        <button type="button" class="btn btn-outline-danger mx-1" @click.prevent="save" >Save</button>
+        <button type="button" class="btn btn-outline-danger mx-1" @click.prevent="saveAccount" >Save</button>
         <button type="button" class="btn btn-outline-secondary mx-1" @click.prevent="$emit('selected',0)" >Cancel</button>  
-        <button type="button" class="btn btn-outline-danger mx-10" @click.prevent="delete" >Delete</button>
+        <button type="button" class="btn btn-outline-danger mx-10" @click.prevent="deleteAccount" >Delete</button>
       </div>
     </form>
   </div>
@@ -46,7 +46,7 @@ export default {
       }
     },
     methods: {
-      async save() {
+      async saveAccount() {
         let res = await fetch('/accounts/' + this.account.id, {
           method: 'PATCH',
           headers: { 'content-type': 'application/json' },
@@ -54,7 +54,7 @@ export default {
         })
         this.$emit('selected', 0)
       },
-      async delete() {
+      async deleteAccount() {
         let res = await fetch('/accounts/' + this.account.id, {
           method: 'DELETE'
         })

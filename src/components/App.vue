@@ -1,8 +1,6 @@
 <template>
       <transition name="bounce" appear >
-        <keep-alive>
-            <component @selected="selectedAccount = $event" :is="currentComponent" :id="selectedAccount" ></component>
-        </keep-alive>
+          <component @selected="selectedAccount = $event" :is="currentComponent" :id="selectedAccount" ></component>
     </transition>
 </template>
 

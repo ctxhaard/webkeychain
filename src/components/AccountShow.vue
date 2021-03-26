@@ -24,12 +24,12 @@
 import AccountField from './AccountField.vue'
 export default {
     name: 'AccountShow',
-    components: {
-        AccountField
+    props: {
+      selected: Object
     },
     emits: [ 'selected' ],
-    props: {
-      id: Number
+    components: {
+        AccountField
     },
     data() {
       return {
@@ -52,26 +52,17 @@ export default {
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify(this.account)
         })
-        this.$emit('selected', 0)
+        this.$emit('selected', {})
       },
       async deleteAccount() {
         let res = await fetch('/accounts/' + this.account.id, {
           method: 'DELETE'
         })
-        this.$emit('selected', 0)
+        this.$emit('selected', {})
       }
     },
-    async mounted() {
-      try {
-        let res = await fetch('/accounts/' + this.id, {
-          method: 'GET',
-          headers: { 'accept': 'application/json' }
-        })
-        let json = await res.json()
-        this.account = json.data
-      } catch(e) {
-        console.log(`Error: ${e} while getting account: ${this.id}`)
-      }
+    mounted() {
+      this.account = this.selected
     }
 }
 </script>

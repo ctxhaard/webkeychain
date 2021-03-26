@@ -2,15 +2,14 @@
     <div class="container">
         <h1>Accounts</h1>
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action" @click.prevent="$emit('selected',account.id)" v-for="account in accounts" :key="account.id">{{account.id}}: {{account.title}}</a>
+            <a href="#" class="list-group-item list-group-item-action" @click.prevent="$emit('selected',account)" v-for="account in accounts" :key="account.id">{{account.id}}: {{account.title}}</a>
         </div>
+        <div class="mb-3">
             <form action="">
-            <div class="mb-3">
                 <button type="button" class="btn btn-outline-info mx-1" @click.prevent="createNew" >Create new</button>
                 <button type="button" class="btn btn-outline-primary mx-1" @click.prevent="logout">Logout</button>
-            </div>
             </form>
-
+        </div>
     </div>
 </template>
 
@@ -19,21 +18,23 @@ import { createApp } from 'vue'
 
 export default {
     name: 'AccountsList',
+    props: {
+        display: String
+    },
+    emits: ['selected'],
     data() {
         return {
             accounts: []
         }
     },
-    props: {
-        display: String
-    },
     methods: {
-        createNew() {
+        async createNew() {
             const res = await fetch('/accounts/new', {
                 method: 'GET',
                 headers: { 'accept': 'application/json' }
                 })
             let json = await res.json()
+            this.$emit('selected', json.data)
             // TODO: fetch the account and pass it to
             // the AccountShow, or change the whole logic
             // : make accountslist fetch single accounts
@@ -44,7 +45,6 @@ export default {
             console.log('TODO: add logout js code')
         }
     },
-    emits: ['selected'],
     async mounted () {
         try {
             const res = await fetch('/accounts', {

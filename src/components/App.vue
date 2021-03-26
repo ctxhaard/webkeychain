@@ -1,6 +1,6 @@
 <template>
       <transition name="bounce" appear >
-          <component @selected="selectedAccount = $event" :is="currentComponent" :id="selectedAccount" ></component>
+          <component @selected="selectedAccount = $event" :is="currentComponent" :selected="selectedAccount" ></component>
     </transition>
 </template>
 
@@ -14,12 +14,12 @@ export default {
   name: 'App',
   data() {
     return {
-      selectedAccount: 0
+      selectedAccount: {}
     }
   },
   computed: {
     currentComponent() {
-      return this.selectedAccount == 0 ? 'AccountsList': 'AccountShow'
+      return Object.keys(this.selectedAccount).length === 0 ? 'AccountsList': 'AccountShow'
     }
   },
   components: {

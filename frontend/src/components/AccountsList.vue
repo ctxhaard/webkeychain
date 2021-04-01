@@ -1,16 +1,16 @@
 <template>
-    <div class="container">
-        <h1>Accounts</h1>
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action" @click.prevent="$emit('selected',account)" v-for="account in accounts" :key="account.id">{{account.id}}: {{account.title}}</a>
-        </div>
-        <div class="mb-3">
-            <form action="">
-                <button type="button" class="btn btn-outline-info mx-1" @click.prevent="createNew" >Create new</button>
-                <button type="button" class="btn btn-outline-primary mx-1" @click.prevent="logout">Logout</button>
-            </form>
-        </div>
+  <div class="container">
+    <h1>Accounts</h1>
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action" @click.prevent="$emit('selected',account)" v-for="account in accounts" :key="account.id">{{account.id}}: {{account.title}}</a>
     </div>
+    <div class="my-3">
+      <form action="">
+        <button type="button" class="btn btn-outline-info mx-1" @click.prevent="createNew" >Create new</button>
+        <button type="button" class="btn btn-outline-primary mx-1" @click.prevent="logout">Logout</button>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>

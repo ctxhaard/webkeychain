@@ -51,7 +51,9 @@ defmodule ExkeychainWeb.AccountController do
 
   def update(conn, params) do
     Logger.info("#{ __MODULE__ }#{  elem(__ENV__.function,0) }")
+    #params = %{params|"id" => Integer.parse(params["id"])}
     convertedParams = for { key, val} <- params, into: %{}, do: {String.to_atom(key), val}
+    #a = {:account, %{convertedParams | :id => Integer.parse(convertedParams.id)}}
     a = {:account, convertedParams}
     :kc_server.put(a)
     render(conn, :update, account: a)

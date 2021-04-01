@@ -133,8 +133,8 @@ read(Port, Accumulator) ->
                 <<"n: ", Value/binary>> ->
                     read(Port, add_field(Accumulator, notes, Value));
                 % other
-                <<"o: ", Value/binary>> ->
-                    read(Port, add_field(Accumulator, other, Value));
+                % <<"o: ", Value/binary>> ->
+                %     read(Port, add_field(Accumulator, other, Value));
                 % discard unmanaged lines
                 _ ->
                     read(Port, Accumulator)
@@ -159,7 +159,7 @@ write(Port, Accounts) ->
     Send(username, "u"),
     Send(password, "p"),
     Send(notes, "n"),
-    Send(other, "o"),
+    % Send(other, "o"),
     write(Port, Tail).
 
 %% @doc Adds a field to the account on top of accounts collection

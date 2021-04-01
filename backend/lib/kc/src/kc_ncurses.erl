@@ -105,7 +105,7 @@ handle_cast({edit, {account, M}}, State = #ncurses_state{ prompt=Prompt }) ->
   Username = Acq("Username", username),
   Password = Acq("Password", password),
   Notes = Acq("Notes", notes),
-  Other = Acq("Other", other),
+  % Other = Acq("Other", other),
   case Prompt("[s]ave or [C]ancel')?") of
     "s" ->
       Account1 = {account, M#{
@@ -113,8 +113,8 @@ handle_cast({edit, {account, M}}, State = #ncurses_state{ prompt=Prompt }) ->
         url => Url,
         username => Username,
         password => Password,
-        notes => Notes,
-        other => Other
+        notes => Notes
+        % other => Other
       }},
       kc_controller:command({save, Account1});
     _ ->
@@ -142,7 +142,7 @@ handle_cast({show, {account, M}}, State = #ncurses_state{ window = Win, prompt =
   cecho:mvwaddstr(WinE, 3, 2, io_lib:format("Username: ~s", [maps:get(username, M, "")])),
   cecho:mvwaddstr(WinE, 4, 2, io_lib:format("Password: ~s", [maps:get(password, M, "")])),
   cecho:mvwaddstr(WinE, 5, 2, io_lib:format("Notes: ~s", [maps:get(notes, M, "")])),
-  cecho:mvwaddstr(WinE, 6, 2, io_lib:format("Other: ~s", [maps:get(other, M, "")])),
+  % cecho:mvwaddstr(WinE, 6, 2, io_lib:format("Other: ~s", [maps:get(other, M, "")])),
   cecho:box(WinE, 0, 0),
   cecho:wrefresh(WinE),
   Cmd = case Prompt( "[e]dit, [d]elete] or [C]ancel?" ) of

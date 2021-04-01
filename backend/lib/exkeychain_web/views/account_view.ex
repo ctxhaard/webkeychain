@@ -13,8 +13,8 @@ defmodule ExkeychainWeb.AccountView do
     %{ data: render_one(account, ExkeychainWeb.AccountView, "account.json")}
   end
 
-  def render("update.json", %{account: {:account, map}}) do
-    %{ id: map.id }
+  def render("update.json", %{account: account}) do
+    %{ id: account.id }
   end
 
   def render("delete.json", %{ id: id}) do

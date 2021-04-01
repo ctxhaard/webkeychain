@@ -43,26 +43,24 @@ defmodule ExkeychainWeb.AccountController do
   def create(conn, params) do
     # used to submit a newly created account
     Logger.info("#{ __MODULE__ }#{  elem(__ENV__.function,0) }")
-    convertedParams = for { key, val} <- params, into: %{}, do: {String.to_atom(key), val}
-    a = {:account, convertedParams}
-    :kc_server.put(a)
-    render(conn, :update, account: a)
+    params = %{params|"id" => String.to_integer(params["id"])}
+    params = for { key, val} <- params, into: %{}, do: {String.to_atom(key), val}
+    :kc_server.put({:account, params})
+    json(conn, %{ id: params.id })
   end
 
   def update(conn, params) do
     Logger.info("#{ __MODULE__ }#{  elem(__ENV__.function,0) }")
-    #params = %{params|"id" => Integer.parse(params["id"])}
-    convertedParams = for { key, val} <- params, into: %{}, do: {String.to_atom(key), val}
-    #a = {:account, %{convertedParams | :id => Integer.parse(convertedParams.id)}}
-    a = {:account, convertedParams}
-    :kc_server.put(a)
-    render(conn, :update, account: a)
+    params = %{params|"id" => String.to_integer(params["id"])}
+    params = for { key, val} <- params, into: %{}, do: {String.to_atom(key), val}
+    :kc_server.put({:account, params})
+    json(conn, %{ id: params.id })
   end
 
   def delete(conn, %{ "id" => id }) do
     id |> String.to_integer() |> :kc_server.delete()
     Logger.info("#{ __MODULE__ }#{  elem(__ENV__.function,0) }")
-    render(conn, :delete, id: id)
+    json(conn, %{ id: id })
   end
 
   @type account :: [%{}]

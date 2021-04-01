@@ -1,0 +1,41 @@
+<%= form_tag(Routes.account_path(@conn, :update, @account.id), method: :put) %>
+    <ul style="list-style: none;">
+        <li>
+            <label class="account-label" for="account_id">Id:</label>
+            <input class="account-input" type="text" id="account_id" name="id" required disabled>
+        </li>
+        <li>
+            <label class="account-label" for="account_title">Title:</label>
+            <input class="account-input" type="text" id="account_title" name="title" required disabled>
+        </li>
+        <li>
+            <label class="account-label" for="account_url">URL:</label>
+            <input class="account-input" type="text" id="account_url" name="url" required disabled>
+        </li>
+        <li>
+            <label class="account-label" for="account_user">Username:</label>
+            <input class="account-input" type="text" id="account_user" name="user" required disabled>
+        </li>
+        <li>
+            <label class="account-label" for="account_password">Password:</label>
+            <input class="account-input" type="text" id="account_password" name="pwd" required disabled>
+        </li>
+        <li>
+            <label class="account-label" for="account_notes">Notes:</label>
+            <input class="account-input" type="text" id="account_notes" name="notes" required disabled>
+        </li>
+        <li>
+            <label class="account-label" for="account_other">Other:</label>
+            <input class="account-input" type="text" id="account_other" name="other" required disabled>
+        </li>
+        <li>
+            <button type="button" id="btn-edit" onclick="enable_inputs();" >Edit</button>
+            <button type="submit" id="btn-save" disabled>Save</button>
+        </li>
+    </ul>
+</form>
+<script>
+    fetch("/api/accounts/<%= @account.id %>", { method: 'GET' })
+        .then(response => response.json())
+        .then(json => show_account(json.data));
+</script

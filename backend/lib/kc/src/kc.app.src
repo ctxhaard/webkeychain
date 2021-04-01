@@ -1,0 +1,22 @@
+{application, kc,
+  [{description, "Keychain manager using openssl"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {mod, {kc_app, []}},
+    {applications,
+      [kernel,
+        stdlib
+      ]},
+    {env,[]},
+    {modules, [
+      kc_app,
+      kc_sup,
+      kc_server,
+      kc_controller,
+      kc_observable,
+      kc_ncurses
+    ]},
+
+    {licenses, ["Apache 2.0"]},
+    {links, []}
+  ]}.

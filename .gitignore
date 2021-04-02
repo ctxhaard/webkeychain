@@ -1,7 +1,5 @@
 .DS_Store
 node_modules
-frontend/dist
-backend/deps
 
 # local env files
 .env.local

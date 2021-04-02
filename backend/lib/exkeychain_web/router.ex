@@ -19,6 +19,7 @@ defmodule ExkeychainWeb.Router do
     #get "/", PageController, :index
     get "/accounts/load", AccountController, :form
     post "/accounts/load", AccountController, :load
+    post "/accounts/unload", AccountController, :unload
     resources "/accounts", AccountController, except: [:edit]
     get "/", AccountController, :entrypoint
   end
@@ -27,6 +28,7 @@ defmodule ExkeychainWeb.Router do
   scope "/api", ExkeychainWeb do
     pipe_through :api
     post "/accounts/load", AccountController, :load
+    post "/accounts/unload", AccountController, :unload
     resources "/accounts", AccountController, except: [:edit]
   end
 

@@ -4,7 +4,7 @@
 
 -behavior(gen_server).
 
--export([start_link/0, load/2, is_loaded/0, first/0, set_pattern/1, next/0, get/1, put/1, delete/1, new_account/0]).
+-export([start_link/0, load/2, unload/0, is_loaded/0, first/0, set_pattern/1, next/0, get/1, put/1, delete/1, new_account/0]).
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2]).
 
 -record(server_state, {accounts = [], current = 0, file_path, password, pattern}).
@@ -20,46 +20,51 @@ start_link() ->
 
 %% @doc Command the server to decrypt and load FilePath
 %% using Password
-%% @spec (FilePath::iolist(), Pwd::iolist()) -> ok
+-spec(load(FilePath::iolist(), Pwd::iolist()) -> ok).
 load(FilePath, Pwd) ->
     gen_server:call(?SERVER, {load, FilePath, Pwd}).
+
+%% @doc Command the server to discard loaded accounts
+-spec(unload() -> ok).
+unload() ->
+    gen_server:call(?SERVER, unload).
 
 is_loaded() ->
     gen_server:call(?SERVER, loaded).
 
 %% @doc Get the first element of the accounts list, if any
-%% @spec () -> kc_account:account() | notfound
+-spec(first() -> kc_account:account() | notfound).
 first() ->
     gen_server:call(?SERVER, first).
 
 %% @doc Set the pattern to filter accounts with
-%% @spec (Pattern :: iolist() ) -> ok
+-spec(set_pattern(Pattern :: iolist() ) -> ok).
 set_pattern(Pattern) ->
     gen_server:call(?SERVER, {setpattern, Pattern}).
 
 
 %% @doc Get the first element of the accounts list, if any
-%% @spec () -> kc_account:account() | notfound
+-spec (next() -> kc_account:account() | notfound).
 next() ->
     gen_server:call(?SERVER, next).
 
 %% @doc Get the the element given its id, if any
-%% @spec (integer()) -> kc_account:account() | notfound
+-spec (get(integer()) -> kc_account:account() | notfound).
 get(AccountId) when is_number(AccountId) ->
     gen_server:call(?SERVER, {get, AccountId}).
 
 %% @doc Add a new account or replace an existing one
-%% @spec (kc_account:account()) -> ok
+-spec( put(kc_account:account()) -> ok).
 put(Account={account, _}) ->
     gen_server:call(?SERVER, {put, Account}).
 
 %% @doc Delete an account identified by id
-%% @spec (integer()) -> ok | notfound
+-spec(delete(integer()) -> ok | notfound).
 delete(AccountId) when is_number(AccountId) ->
     gen_server:call(?SERVER, {delete, AccountId}).
 
 %% @doc Prepare a new empty account
-%% @spec () -> kc_account:account()
+-spec(new_account() -> kc_account:account()).
 new_account() ->
     gen_server:call(?SERVER, new_account).
 
@@ -71,6 +76,11 @@ handle_call({load, FilePath, Pwd}, _From, _State) ->
     ?LOG_DEBUG(#{ who => ?MODULE, what => "server loaded accounts", log => trace, level => debug }),
     kc_observable:notify(loaded),
     {reply, ok, #server_state{ accounts=Accounts, file_path = FilePath, password = Pwd }};
+
+handle_call(unload, _From, _State) ->
+    ?LOG_DEBUG(#{ who => ?MODULE, what => "server unloaded accounts", log => trace, level => debug }),
+    kc_observable:notify(loaded),
+    {reply, ok, #server_state{}};
 
 handle_call(loaded, _From, State) ->
     Loaded = if

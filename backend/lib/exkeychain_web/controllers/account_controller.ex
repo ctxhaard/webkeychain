@@ -23,6 +23,11 @@ defmodule ExkeychainWeb.AccountController do
     do: render(conn, :authentication)
   end
 
+  def unload(conn, _params) do
+    with :ok <- :kc_server.unload(),
+    do: json(conn, %{})
+  end
+
   def index(conn, _params) do
     accounts = get_accounts([])
     render(conn, :index, accounts: accounts )

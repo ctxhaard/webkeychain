@@ -12,8 +12,10 @@
 start(_StartType, _StartArgs) ->
     Dispatch = cowboy_router:compile([
         {'_', [
-            {"/", wskc_base_handler, []},
-            {"/ws", wskc_websocket_handler, []}
+            {"/ws", wskc_websocket_handler, []},
+            {"/", cowboy_static, {file, "../frontend/dist/index.html"}},
+            {"/[...]", cowboy_static, {dir, "../frontend/dist"}},
+            {"/", wskc_base_handler, []}
         ]}
     ]),
     {ok, _} = cowboy:start_clear(my_http_listener,

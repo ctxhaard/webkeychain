@@ -3,10 +3,6 @@
 
 -export([init/2]).
 
-init(Req0, State) ->
-    Req = cowboy_req:reply(200,
-        #{<<"content-type">> => <<"text/plain">>},
-        <<"Hello Erlang!">>,
-        Req0),
-    {ok, Req, State}.
+init(Req, State) ->
+  {"/assets/[...]", cowboy_static, {priv_dir, my_app, "static/assets"}}.
 

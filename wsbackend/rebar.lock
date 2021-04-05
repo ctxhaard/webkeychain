@@ -1,14 +1,6 @@
 {"1.2.0",
-[{<<"cecho">>,
-  {git,"git@github.com:mazenharake/cecho.git",
-       {ref,"ae0bc063517f74d7e78c89d6cd011fea2532ea89"}},
-  1},
- {<<"cowboy">>,{pkg,<<"cowboy">>,<<"2.8.0">>},0},
+[{<<"cowboy">>,{pkg,<<"cowboy">>,<<"2.8.0">>},0},
  {<<"cowlib">>,{pkg,<<"cowlib">>,<<"2.9.1">>},1},
- {<<"kc">>,
-  {git,"git://github.com/ctxhaard/erlkeychain",
-       {ref,"21876266895df2fe232a5833eadb0d8e6f7bdc91"}},
-  0},
  {<<"ranch">>,{pkg,<<"ranch">>,<<"1.7.1">>},1}]}.
 [
 {pkg_hash,[

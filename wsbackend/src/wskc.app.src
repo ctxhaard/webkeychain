@@ -1,18 +1,16 @@
 {application, wskc,
-  [{description, "Web application providing KeyChain services through web sockets mainly"},
-    {vsn, "0.1.0"},
-    {registered, []},
-    {mod, {wskc_app, []}},
-    {applications,
-      [kernel,
-        stdlib,
-        kc,
-        cowboy
-      ]},
-    {env,[]},
-    {modules, []},
+ [{description, "An OTP application"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {wskc_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    cowboy
+   ]},
+  {env,[]},
+  {modules, []},
 
-    {licenses, ["Apache 2.0"]},
-    {links, []}
-  ]}.
-
+  {licenses, ["Apache 2.0"]},
+  {links, []}
+ ]}.
